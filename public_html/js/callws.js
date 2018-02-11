@@ -8,7 +8,7 @@
 var getExcursionesWS = 'http://localhost:8080/excursiones/internal';
 $(document).ready(function () {
 
-jQuery.support.cors = false;
+//jQuery.support.cors = false;
         $.ajax({
         type: "GET",
                 url: getExcursionesWS,
@@ -19,18 +19,21 @@ jQuery.support.cors = false;
                 success: function (data) {
 
                 var trHTML = '';
-                        $.each(data.excursion, function (i, item) {
-                        var button = '<button value=' + data.excursion[i].id + ' onclick="apuntarse(' + data.excursion[i].id + ')" >Apuntarse</button>'
-                                trHTML += '<tr><td>' + data.excursion[i].origen + '</td><td>' + data.excursion[i].destino + '</td><td>' + data.excursion[i].fecha + '</td><td>' + data.excursion[i].hora + '</td><td>' + button + '</td></tr>';
+                        $.each(data, function (i, item) {
+                        var button = '<button value=' + data[i].id + ' onclick="apuntarse(' + data[i].id + ')" >Apuntarse</button>'
+                                trHTML += '<tr class="clickable-row" onclick="mostrarExcursion('+"'"+data[i].origen+"'"+','+"'"+data[i].destino+"'"+','+"'"+data[i].descripcion+"'"+')"><td>' + data[i].origen + '</td><td>' + data[i].destino + '</td><td>' + data[i].fecha + '</td><td>' + data[i].hora + '</td><td>' + button + '</td></tr>';
                         });
-                        $('#location').append(trHTML);
+                        $('#excursionesDisponibles').append(trHTML);
                 },
                 error: function (msg) {
                     alert(msg.responseText);
                 }
         });
+        
 });
 function apuntarse(idExcursion) {
 //pedimos login
 //si login es correcto apuntamos
 }
+
+
