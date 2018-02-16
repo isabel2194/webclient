@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+//ATENCION https://bootsnipp.com/snippets/VElzQ
+
 var map;
 var markers = [];
 function initMap() {
